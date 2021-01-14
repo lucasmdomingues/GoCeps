@@ -5,11 +5,11 @@ orbs:
 
 jobs:
   build_and_test:
-    executor:
-      name: go/default
-      tag: "1.15"
+    docker:
+      - image: cimg/node:12
     steps:
       - checkout
+      - run: node --version
       - go/test:
           verbose: true
           failfast: true
