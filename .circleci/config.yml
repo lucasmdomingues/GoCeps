@@ -2,20 +2,32 @@ version: 2.1
 
 orbs:
   go: circleci/go@1.5.0
+  node: circleci/node@4.1.0
 
 jobs:
   build_and_test:
-    docker:
-      - image: cimg/node:15.5.1
+    executor:
+      name: go/default
+      tag: "1.15"
     steps:
       - checkout
-      - run: node --version
       - go/test:
           verbose: true
           failfast: true
       - run: go build -o bin/goceps .
+      - store_artifacts:
+          path: /bin/goceps
+
+  build_and_deploy:
+    executor: node/default
+    steps:
+      - checkout
+      - run: ls
+      - store_artifacts:
+          path: /bin/goceps
 
 workflows:
   build_and_test:
     jobs:
       - build_and_test
+      - build_and_deploy
