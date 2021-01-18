@@ -28,11 +28,12 @@ jobs:
       - store_artifacts:
           path: /tmp/artifacts
   release:
-    executor:
-      name: node/default
-      tag: "13"
+    docker:
+      - image: "cimg/base:stable"
     steps:
       - checkout
+      - node/install:
+          install-yarn: true
       - run: node --version
       - run:
           name: Get build
