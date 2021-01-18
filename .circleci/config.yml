@@ -22,9 +22,9 @@ jobs:
           path: /tmp/artifact-1
           destination: artifact-file
   release:
-    executor:
-      name: node/default
-      tag: "13.14"
+    install-node-example:
+    docker:
+      - image: "cimg/base:stable"
     steps:
       - checkout
       - node/install:
