@@ -22,7 +22,9 @@ jobs:
           path: /tmp/artifact-1
           destination: artifact-file
   release:
-    executor: node/default #609ccef46645aa23ec36c2e5744b7df92e45266d
+    executor:
+      name: node/default
+      tag: "13.14"
     steps:
       - checkout
       - node/install:
