@@ -18,9 +18,9 @@ jobs:
       - run:
           name: Creating artifact
           command: |
-            cp bin/* /tmp/bin
+            cp bin/* /tmp/tmp/artifact-1
       - store_artifacts:
-          path: /tmp/bin
+          path: /tmp/artifact-1
           destination: artifact-file
   release:
     install-node-example:
