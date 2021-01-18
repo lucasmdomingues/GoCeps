@@ -14,7 +14,7 @@ jobs:
       - go/test:
           verbose: true
           failfast: true
-      - run: mkdir /tmp/build;
+      - run: mkdir -p /tmp/build;
       - run: go build -o bin/goceps .
       - run: cp /bin/* /tmp/build
       - store_artifacts:
