@@ -18,7 +18,8 @@ jobs:
       - run:
           name: Creating artifact
           command: |
-            cp bin/* /tmp/tmp/artifact-1
+            mkdir /tmp/artifact-1;
+            cp bin/* /tmp/artifact-1
       - store_artifacts:
           path: /tmp/artifact-1
           destination: artifact-file
