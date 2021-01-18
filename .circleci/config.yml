@@ -1,15 +1,25 @@
-version: 2
+version: 2.1
+
+orbs:
+  go: circleci/go@1.5.0
+
 jobs:
-  build_and_save:
-    docker:
-      - image: circleci/golang:latest
+  build_and_test:
+    executor:
+      name: go/default
+      tag: "1.15"
     steps:
       - checkout
-      - run: go build
+      - go/test:
+          verbose: true
+          failfast: true
+      - run:  mkdir /tmp/artifacts;
+      - run: go build -o bin/goceps .
+      - run: cp /bin/* /tmp/artifacts
       - store_artifacts:
-          path: /bin/final_build
+          path: /tmp/artifacts
+
 workflows:
-  version: 2
-  main:
+  build_and_test:
     jobs:
-      - build_and_save
+      - build_and_test
