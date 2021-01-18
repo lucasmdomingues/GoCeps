@@ -29,7 +29,8 @@ jobs:
           pkg-manager: yarn
       - run: 
           name: Get build
-          command: curl -H "Circle-Token: $CIRCLE_TOKEN" https://circleci.com/api/v1.1/project/github/lucasmdomingues/goceps/latest/artifacts
+          command: | 
+            curl -H "Circle-Token: $CIRCLE_TOKEN" https://circleci.com/api/v1.1/project/github/lucasmdomingues/goceps/latest/artifacts
       - run: ls
 
 workflows:
