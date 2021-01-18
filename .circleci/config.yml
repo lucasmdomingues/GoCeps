@@ -40,7 +40,7 @@ jobs:
             curl -H "Circle-Token: $CIRCLE_TOKEN" https://circleci.com/api/v1.1/project/github/lucasmdomingues/goceps/latest/artifacts | grep -o 'https://[^"]*' > artifact.txt
       - run: 
           name: Download artifact
-          command: wget <artifact.txt xargs -P4 -I % wget % $CIRCLE_TOKEN -P bin
+          command: <artifact.txt xargs -P4 -I % wget % $CIRCLE_TOKEN -P bin
       - run: ls bin
 
 workflows:
